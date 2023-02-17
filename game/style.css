@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 100px auto;
+  width: 400px;
+  height: 600px;
+  background-color: black;
+  position: relative;
+}
+
+#scores {
+  position: absolute;
+  height: 50px;
+  width: 150px;
+  bottom: 20px;
+  right: -160px;
+}
+
+.activeModel {
+  width: 20px;
+  height: 20px;
+  background-color: aquamarine;
+  border: 0.3px solid #333;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.fixedModel {
+  width: 20px;
+  height: 20px;
+  background-color: #fefefe;
+  border: 0.3px solid #333;
+  box-sizing: border-box;
+  position: absolute;
+}
