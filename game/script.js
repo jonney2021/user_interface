@@ -189,6 +189,9 @@ function locationBlocks() {
 //use keyboard event to control the move
 function controlKey() {
   document.addEventListener("keydown", function (e) {
+    if (!bPause) {
+      return;
+    }
     console.log(e.key);
     switch (e.key) {
       case "ArrowUp":
@@ -418,16 +421,21 @@ again.addEventListener("click", function () {
   location.reload(true);
 });
 
+// pause click event
 const pause = document.querySelector(".pause");
-let flag1 = true;
+let bPause = true;
 pause.addEventListener("click", function () {
-  if (flag1) {
+  if (bPause) {
     clearInterval(timer);
-    flag1 = !flag1;
+    bPause = !bPause;
+    this.innerHTML = "Start";
+    this.style.backgroundColor = "red";
   } else {
     timer = setInterval(function () {
       move(0, 1);
     }, 800);
-    flag1 = true;
+    bPause = true;
+    this.innerHTML = "Pause";
+    this.style.backgroundColor = "";
   }
 });

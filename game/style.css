@@ -22,10 +22,12 @@
 
 .again {
   margin-top: 5px;
+  width: 80px;
 }
 
 .pause {
   margin-top: 5px;
+  width: 80px;
 }
 
 .activeModel {
