@@ -417,3 +417,17 @@ function gameOver() {
 again.addEventListener("click", function () {
   location.reload(true);
 });
+
+const pause = document.querySelector(".pause");
+let flag1 = true;
+pause.addEventListener("click", function () {
+  if (flag1) {
+    clearInterval(timer);
+    flag1 = !flag1;
+  } else {
+    timer = setInterval(function () {
+      move(0, 1);
+    }, 800);
+    flag1 = true;
+  }
+});

@@ -14,10 +14,18 @@
 
 #scores {
   position: absolute;
-  height: 50px;
+  height: 80px;
   width: 150px;
-  bottom: 20px;
+  bottom: 5px;
   right: -160px;
+}
+
+.again {
+  margin-top: 5px;
+}
+
+.pause {
+  margin-top: 5px;
 }
 
 .activeModel {
