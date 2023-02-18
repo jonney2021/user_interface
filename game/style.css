@@ -47,6 +47,7 @@ body {
 
 h1 {
   border: black 4px double;
+  border-radius: 5px;
   padding: 10px;
   font-size: 26px;
 }

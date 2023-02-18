@@ -461,6 +461,8 @@ function gameOver() {
   // reset the maxScore
   maxScore = Math.max(maxScore, score);
   let maxData = localStorage.getItem("maxScore");
+  //when the maxScore in the local storage is less than the current maxScore,
+  // the display value of maxScore will be changed, and the value in the local storage will also be changed
   if (parseInt(maxData) < maxScore) {
     document.querySelector(".maxScore").innerHTML = maxScore;
     localStorage.setItem("maxScore", maxScore);
