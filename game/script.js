@@ -13,7 +13,7 @@ const rows = 30;
 const cols = 20;
 
 //colors
-const colors = ["orange", "red", "purple", "green", "blue"];
+const colors = ["#f5821f", "#fa1e1e", "#d838cb", "#42c6f0", "#4bd838"];
 let color;
 
 // create data source for each model, position relative to 16 squares

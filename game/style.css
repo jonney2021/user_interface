@@ -14,9 +14,10 @@ body {
   margin-top: 2vh;
   width: 400px;
   height: 600px;
-  background-color: black;
   display: flex;
   flex-wrap: wrap;
+  background: #212121;
+  transition: all 300ms;
 }
 
 .nextOne {
@@ -62,23 +63,49 @@ h4 {
 
 .again {
   position: relative;
-  background-color: rgb(191, 195, 197);
-  border: none;
   font-size: 14px;
   padding: 10px;
   width: 100px;
   height: 30px;
-  /* text-align: center; */
-  overflow: hidden;
   cursor: pointer;
   margin-top: 15px;
   border-radius: 5px;
+
+  border: unset;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  font-weight: 1000;
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+.again::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 5px;
+  background-color: #212121;
+  z-index: -1;
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+.again:hover::before {
+  width: 100%;
+}
+
+.again:hover {
+  color: #d6d6d6;
 }
 
 .pause {
   position: relative;
-  background-color: rgb(191, 195, 197);
-  border: none;
+  background: #e8e8e8;
   font-size: 14px;
   padding: 10px;
   width: 100px;
@@ -86,6 +113,37 @@ h4 {
   cursor: pointer;
   margin-top: 15px;
   border-radius: 5px;
+
+  border: unset;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  font-weight: 1000;
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+.pause::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 5px;
+  background-color: #212121;
+  z-index: -1;
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+.pause:hover::before {
+  width: 100%;
+}
+
+.pause:hover {
+  color: #d6d6d6;
 }
 
 .activeModel {
