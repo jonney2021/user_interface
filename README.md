@@ -1,2 +1,3 @@
-# user_interface
-user_interface
+# Tetris game
+
+A team project of course user_interface
