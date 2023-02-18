@@ -14,6 +14,7 @@ const cols = 20;
 
 //colors
 const colors = ["orange", "red", "purple", "green", "blue"];
+let color;
 
 // create data source for each model, position relative to 16 squares
 let models = [
@@ -121,6 +122,9 @@ let models = [
 //currently used model
 let currentModel = {};
 
+//next model
+let nextModel = {};
+
 //the position of 16 squares
 let currentX = 0,
   currentY = 0;
@@ -137,9 +141,16 @@ function init() {
   createModel();
   controlKey();
 }
+
 //onload event
 window.onload = function () {
   init();
+  // Get maxScore data from local storage
+  let maxData = localStorage.getItem("maxScore");
+  // If there is no maxScore data in local storage,
+  // then maxScore is 0. else set maxScore to the value of this data
+  maxData = maxData === null ? 0 : parseInt(maxData);
+  document.querySelector(".maxScore").innerHTML = maxData;
 };
 
 // Create block elements based on the model's data source
@@ -149,25 +160,48 @@ function createModel() {
     gameOver();
     return;
   }
-  //Create a random model
-  currentModel = models[Math.trunc(Math.random() * models.length)];
-  console.log(currentModel);
+
+  // Check if the nextModel object is empty
+  if (Object.keys(nextModel).length === 0) {
+    nextModel = models[Math.trunc(Math.random() * models.length)];
+    currentModel = nextModel;
+    // console.log(currentModel);
+    nextModel = models[Math.trunc(Math.random() * models.length)];
+    console.log(nextModel);
+    color = colors[Math.trunc(Math.random() * colors.length)];
+  } else {
+    currentModel = nextModel;
+    nextModel = models[Math.trunc(Math.random() * models.length)];
+    console.log(nextModel);
+  }
   // reset the position of the 16-square
   currentX = 0;
   currentY = 0;
-  // generate a random color
-  let color = colors[Math.trunc(Math.random() * colors.length)];
   //generate block elements
   for (let key in currentModel) {
     const divEle = document.createElement("div");
     divEle.classList.add("activeModel");
     divEle.style.background = color;
     document.querySelector(".container").appendChild(divEle);
-    // Locating the position of block element
-    locationBlocks();
-    // let the model drop automatically
-    autoDrop();
   }
+  // Locating the position of block element
+  locationBlocks();
+  // let the model drop automatically
+  autoDrop();
+
+  // Clear the content of nextOne
+  document.querySelector(".nextOne").innerHTML = "";
+  // generate a random color
+  color = colors[Math.trunc(Math.random() * colors.length)];
+  // generate block elements
+  for (let key in nextModel) {
+    const divEle1 = document.createElement("div");
+    divEle1.classList.add("nextModel");
+    divEle1.style.background = color;
+    document.querySelector(".nextOne").appendChild(divEle1);
+  }
+  // Locating the position of next block element
+  locationNext();
 }
 
 // Locating the position of block elements according to the data source
@@ -183,6 +217,20 @@ function locationBlocks() {
     // the position of 16 squares +  the relative position of block element in 16 square
     activeModelEle.style.top = (currentY + blockModel.row) * step + "px";
     activeModelEle.style.left = (currentX + blockModel.col) * step + "px";
+  }
+}
+
+// Locating the position of next block elements according to the data source
+function locationNext() {
+  // get all the next block elements
+  let elesNext = document.querySelectorAll(".nextModel");
+  for (let i = 0; i < elesNext.length; i++) {
+    let nextModelEle = elesNext[i];
+    //data of each block element(row,column), array-like objects are accessed by index
+    let blockNext = nextModel[i];
+    // Specify the corresponding position of the block element according to the data of each block element
+    nextModelEle.style.top = blockNext.row * step + "px";
+    nextModelEle.style.left = blockNext.col * step + "px";
   }
 }
 
@@ -413,6 +461,8 @@ function gameOver() {
   // reset the maxScore
   maxScore = Math.max(maxScore, score);
   document.querySelector(".maxScore").innerHTML = maxScore;
+  localStorage.setItem("maxScore", maxScore);
+  console.log(localStorage.getItem("maxScore"));
   alert(`Game Over! Your score is ${maxScore}`);
 }
 
