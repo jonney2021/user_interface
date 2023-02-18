@@ -149,7 +149,7 @@ window.onload = function () {
   let maxData = localStorage.getItem("maxScore");
   // If there is no maxScore data in local storage,
   // then maxScore is 0. else set maxScore to the value of this data
-  maxData = maxData === null ? 0 : parseInt(maxData);
+  maxData = maxData === null ? maxScore : parseInt(maxData);
   document.querySelector(".maxScore").innerHTML = maxData;
 };
 
@@ -460,9 +460,12 @@ function gameOver() {
   }
   // reset the maxScore
   maxScore = Math.max(maxScore, score);
-  document.querySelector(".maxScore").innerHTML = maxScore;
-  localStorage.setItem("maxScore", maxScore);
-  console.log(localStorage.getItem("maxScore"));
+  let maxData = localStorage.getItem("maxScore");
+  if (parseInt(maxData) < maxScore) {
+    document.querySelector(".maxScore").innerHTML = maxScore;
+    localStorage.setItem("maxScore", maxScore);
+  }
+  // console.log(localStorage.getItem("maxScore"));
   alert(`Game Over! Your score is ${maxScore}`);
 }
 

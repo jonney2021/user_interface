@@ -45,6 +45,11 @@ body {
   align-items: center;
 }
 
+h1 {
+  border: black 4px double;
+  padding: 10px;
+  font-size: 26px;
+}
 h2 {
   font-size: 20px;
   border: black 4px double;
