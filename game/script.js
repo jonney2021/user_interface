@@ -2,7 +2,6 @@
 
 // Set the initial score to 0
 let score = 0;
-let maxScore = 0;
 let scoreBox = document.querySelector(".score");
 const again = document.querySelector(".again");
 
@@ -149,7 +148,7 @@ window.onload = () => {
   let maxData = localStorage.getItem("maxScore");
   // If there is no maxScore data in local storage,
   // then maxScore is 0. else set maxScore to the value of this data
-  maxData = maxData === null ? maxScore : parseInt(maxData);
+  maxData = maxData === null ? 0 : parseInt(maxData);
   document.querySelector(".maxScore").innerHTML = maxData;
 };
 
@@ -177,6 +176,14 @@ function createModel() {
   // reset the position of the 16-square
   currentX = 0;
   currentY = 0;
+
+  // If the new model appears, it will collide with the fixed model,
+  // then there is no need to generate it and end the game
+  if (isTouch(currentX, currentY, currentModel)) {
+    gameOver();
+    return;
+  }
+
   //generate block elements
   for (let key in currentModel) {
     const divEle = document.createElement("div");
@@ -184,6 +191,7 @@ function createModel() {
     divEle.style.background = color;
     document.querySelector(".container").appendChild(divEle);
   }
+
   // Locating the position of block element
   locationBlocks();
   // let the model drop automatically
@@ -207,12 +215,14 @@ function createModel() {
 // Locating the position of block elements according to the data source
 function locationBlocks() {
   checkBound();
+
   // get all the block elements
   let eles = document.querySelectorAll(".activeModel");
   for (let i = 0; i < eles.length; i++) {
     let activeModelEle = eles[i];
     //data of each block element(row,column), array-like objects are accessed by index
     let blockModel = currentModel[i];
+
     // Specify the corresponding position of the block element according to the data of each block element
     // the position of 16 squares +  the relative position of block element in 16 square
     activeModelEle.style.top = (currentY + blockModel.row) * step + "px";
@@ -459,14 +469,14 @@ function gameOver() {
     clearInterval(timer);
   }
   // reset the maxScore
-  maxScore = Math.max(maxScore, score);
   let maxData = localStorage.getItem("maxScore");
+  let maxScore = Math.max(maxData, score);
   //when the maxScore in the local storage is less than the current maxScore,
   // the display value of maxScore will be changed, and the value in the local storage will also be changed
-  if (parseInt(maxData) < maxScore) {
-    document.querySelector(".maxScore").innerHTML = maxScore;
+  if (parseInt(maxData) < maxScore || maxData === null) {
     localStorage.setItem("maxScore", maxScore);
   }
+  document.querySelector(".maxScore").innerHTML = maxScore;
   // console.log(localStorage.getItem("maxScore"));
   alert(`Game Over! Your score is ${maxScore}`);
 }
