@@ -42,19 +42,19 @@ let models = [
   {
     0: {
       row: 1,
-      col: 1,
+      col: 2,
     },
     1: {
       row: 0,
-      col: 0,
+      col: 1,
     },
     2: {
       row: 1,
-      col: 0,
+      col: 1,
     },
     3: {
       row: 2,
-      col: 0,
+      col: 1,
     },
   },
 
@@ -81,19 +81,19 @@ let models = [
   // the forth model object(I)
   {
     0: {
-      row: 0,
+      row: 1,
       col: 0,
     },
     1: {
-      row: 0,
+      row: 1,
       col: 1,
     },
     2: {
-      row: 0,
+      row: 1,
       col: 2,
     },
     3: {
-      row: 0,
+      row: 1,
       col: 3,
     },
   },
@@ -143,7 +143,7 @@ function init() {
 }
 
 //onload event
-window.onload = function () {
+window.onload = () => {
   init();
   // Get maxScore data from local storage
   let maxData = localStorage.getItem("maxScore");
@@ -167,12 +167,12 @@ function createModel() {
     currentModel = nextModel;
     // console.log(currentModel);
     nextModel = models[Math.trunc(Math.random() * models.length)];
-    console.log(nextModel);
+    // console.log(nextModel);
     color = colors[Math.trunc(Math.random() * colors.length)];
   } else {
     currentModel = nextModel;
     nextModel = models[Math.trunc(Math.random() * models.length)];
-    console.log(nextModel);
+    // console.log(nextModel);
   }
   // reset the position of the 16-square
   currentX = 0;
@@ -236,11 +236,11 @@ function locationNext() {
 
 //use keyboard event to control the move
 function controlKey() {
-  document.addEventListener("keydown", function (e) {
+  document.addEventListener("keydown", (e) => {
     if (!bPause) {
       return;
     }
-    console.log(e.key);
+    // console.log(e.key);
     switch (e.key) {
       case "ArrowUp":
         // console.log("up");
@@ -288,7 +288,7 @@ function rotate() {
   // use deep copy to clone a new object of currentModel,
   // so changes to the new object will not affect the current one.
   const cloneCurrentModel = JSON.parse(JSON.stringify(currentModel));
-  //iterate over the model data source
+  // iterate over the model data source
   for (let key in cloneCurrentModel) {
     // block element data
     let blockModel = cloneCurrentModel[key];
@@ -472,7 +472,7 @@ function gameOver() {
 }
 
 //restart the game
-again.addEventListener("click", function () {
+again.addEventListener("click", () => {
   location.reload(true);
 });
 
