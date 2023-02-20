@@ -11,7 +11,6 @@ let scoreBox = document.querySelector(".score");
 const again = document.querySelector(".again");
 
 // Declare sound variables
-// const backgroundSound = new Audio("audio/backgoundSound");
 const removeSound = new Audio("audio/remove.mp3");
 const gameoverSound = new Audio("audio/gameover.mp3");
 const rotateSound = new Audio("audio/rotate.wav");
