@@ -136,7 +136,7 @@ let currentModel = {};
 let nextModel = {};
 
 //the position of 16 squares
-let currentX = 0,
+let currentX = 6,
   currentY = 0;
 
 // Record the position of all block elements
@@ -185,7 +185,7 @@ function createModel() {
     // console.log(nextModel);
   }
   // reset the position of the 16-square
-  currentX = 0;
+  currentX = 6;
   currentY = 0;
 
   // If the new model appears, it will collide with the fixed model,
