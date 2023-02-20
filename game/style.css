@@ -6,13 +6,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(245, 245, 227);
+  background-color: #fffcf2;
 }
 
 .container {
   position: relative;
   margin-top: 2vh;
-  width: 400px;
+  /* width: 400px; */
+  width: 300px;
   height: 600px;
   display: flex;
   flex-wrap: wrap;
@@ -26,7 +27,7 @@ body {
   height: 80px;
   display: flex;
   flex-wrap: wrap;
-  background-color: lightgray;
+  background-color: #ccc5b9;
   border: black 4px double;
   position: relative;
 }
@@ -44,7 +45,7 @@ body {
   flex-direction: column;
   align-items: center;
   /* align-items: left; */
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 h1 {
@@ -174,6 +175,13 @@ h4 {
 
 .smallBox h3 {
   font-size: 13px;
+}
+
+.control {
+  width: 100%;
+  margin-top: 20px;
+  text-align: left;
+  padding-left: 30px;
 }
 
 @media (max-width: 768px) {

@@ -19,7 +19,8 @@ const rotateSound = new Audio("audio/rotate.wav");
 const step = 20;
 // 30 rows,20 columns
 const rows = 30;
-const cols = 20;
+// const cols = 20;
+const cols = 15;
 
 //colors
 const colors = ["#f5821f", "#fa1e1e", "#d838cb", "#42c6f0", "#4bd838"];
