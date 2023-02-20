@@ -17,9 +17,8 @@ const rotateSound = new Audio("audio/rotate.wav");
 
 // distance per step
 const step = 20;
-// 30 rows,20 columns
+// 30 rows,15 columns
 const rows = 30;
-// const cols = 20;
 const cols = 15;
 
 //colors
