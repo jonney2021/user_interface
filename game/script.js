@@ -1,9 +1,19 @@
-// Tetris   Developed by Yeming Hu
+// Team Tetris
+/* Members:
+  Chih-Yin Chen
+  Debora Correa Batista Bastos
+  Mackenzie Sawyer
+  Yeming Hu */
 
 // Set the initial score to 0
 let score = 0;
 let scoreBox = document.querySelector(".score");
 const again = document.querySelector(".again");
+
+// Declare sound variables
+// const backgroundSound = new Audio("audio/backgoundSound");
+const removeSound = new Audio("audio/remove.mp3");
+const gameoverSound = new Audio("audio/gameover.mp3");
 
 // distance per step
 const step = 20;
@@ -405,6 +415,8 @@ function isRemoveRow() {
 
 //remove the row which is full
 function removeRow(row) {
+  // play a sound that remove a line.
+  removeSound.play();
   for (let i = 0; i < cols; i++) {
     // remove all the block elements of this row
     document
@@ -413,6 +425,7 @@ function removeRow(row) {
     // remove the data source of these block elements
     fixedElements[row + "_" + i] = null;
   }
+
   dropElements(row);
   //add the scores
   score += 100;
@@ -464,6 +477,8 @@ function isGameOver() {
 
 // gameOver function
 function gameOver() {
+  // Play the game over sound
+  gameoverSound.play();
   // stop the timer
   if (timer) {
     clearInterval(timer);
