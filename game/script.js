@@ -14,6 +14,7 @@ const again = document.querySelector(".again");
 // const backgroundSound = new Audio("audio/backgoundSound");
 const removeSound = new Audio("audio/remove.mp3");
 const gameoverSound = new Audio("audio/gameover.mp3");
+const rotateSound = new Audio("audio/rotate.wav");
 
 // distance per step
 const step = 20;
@@ -325,6 +326,7 @@ function rotate() {
   // else accept the rotate
   currentModel = cloneCurrentModel;
   locationBlocks();
+  rotateSound.play();
 }
 
 //Let the model only move in the container
