@@ -495,7 +495,7 @@ function gameOver() {
   document.querySelector(".maxScore").innerHTML = maxScore;
   document.querySelector(".pause").disabled = true;
   // console.log(localStorage.getItem("maxScore"));
-  alert(`Game Over! Your score is ${maxScore}`);
+  alert(`Game Over! Your score is ${score}`);
 }
 
 //restart the game
